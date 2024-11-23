@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementAPI", "LibraryManagementAPI\LibraryManagementAPI.csproj", "{A960BE7E-6617-4DA2-A7CA-F5DB2B08768D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Management.API", "LibraryManagementAPI\Library.Management.API.csproj", "{A960BE7E-6617-4DA2-A7CA-F5DB2B08768D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{DF4F09C9-8C02-4277-9BDC-5A0EF76B15C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Management.Domain", "LibraryManagementDomain\Library.Management.Domain.csproj", "{47E958BB-3062-4A26-A24F-3F757332AFF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A960BE7E-6617-4DA2-A7CA-F5DB2B08768D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A960BE7E-6617-4DA2-A7CA-F5DB2B08768D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A960BE7E-6617-4DA2-A7CA-F5DB2B08768D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF4F09C9-8C02-4277-9BDC-5A0EF76B15C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF4F09C9-8C02-4277-9BDC-5A0EF76B15C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF4F09C9-8C02-4277-9BDC-5A0EF76B15C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF4F09C9-8C02-4277-9BDC-5A0EF76B15C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E958BB-3062-4A26-A24F-3F757332AFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E958BB-3062-4A26-A24F-3F757332AFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E958BB-3062-4A26-A24F-3F757332AFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E958BB-3062-4A26-A24F-3F757332AFF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
