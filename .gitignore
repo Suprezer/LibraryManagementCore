@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 LibraryManagementAPI/appsettings.json
 /LibraryManagementAPI/appsettings.json
+/LibraryManagementAPI/appsettings.Development.json
