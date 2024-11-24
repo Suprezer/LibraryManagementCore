@@ -4,7 +4,7 @@ namespace LibraryManagementAPI.DTOs
 {
     public class BookDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -13,6 +13,10 @@ namespace LibraryManagementAPI.DTOs
         [Required]
         [StringLength(50)]
         public string Author { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Genre { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime PublishedDate { get; set; }
