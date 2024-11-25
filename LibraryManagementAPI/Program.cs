@@ -1,10 +1,10 @@
-using LibraryManagement.Application.Commands;
 using LibraryManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using LibraryManagement.Domain.Interfaces;
 using LibraryManagement.Infrastructure.UnitOfWork;
+using LibraryManagement.Application.Commands.CreateBook;
 
 var builder = WebApplication.CreateBuilder(args);
 

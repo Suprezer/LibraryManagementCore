@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Application.Commands;
+﻿using LibraryManagement.Application.Commands.CreateBook;
+using LibraryManagement.Application.Commands.DeleteBook;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,14 @@ namespace LibraryManagement.API.Controllers
         public async Task<IActionResult> GetBookById(Guid id)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteBook(DeleteBookCommand command)
+        {
+            await _mediator.Send(command);
+
+            return Ok(command.Id);
         }
     }
 }

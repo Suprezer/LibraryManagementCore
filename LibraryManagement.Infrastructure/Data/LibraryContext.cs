@@ -17,6 +17,7 @@ namespace LibraryManagement.Infrastructure.Data
         /// These DbSets are tables in the database.
         /// </summary>
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
         /// <summary>
         /// This method is called when the model for a derived context has been initialized,
@@ -26,6 +27,14 @@ namespace LibraryManagement.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            /*
+            modelBuilder.Entity<Book>()
+                .HasMany(b => b.Author);
+
+            modelBuilder.Entity<Book>()
+                .HasMany(b => b.Genre);
+            */
         }
     }
 }

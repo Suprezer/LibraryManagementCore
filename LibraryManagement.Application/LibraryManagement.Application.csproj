@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\Handlers\" />
+    <Compile Remove="Queries\Handlers\**" />
+    <EmbeddedResource Remove="Queries\Handlers\**" />
+    <None Remove="Queries\Handlers\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibraryManagementDomain\LibraryManagement.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\GetBookById\" />
+    <Folder Include="Queries\GetAllBooks\" />
   </ItemGroup>
 
 </Project>

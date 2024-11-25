@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagement.Application.Commands
+namespace LibraryManagement.Application.Commands.CreateBook
 {
     /// <summary>
     /// Command to create a new Book.

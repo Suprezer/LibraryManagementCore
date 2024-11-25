@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LibraryManagement.Domain.Models;
+using LibraryManagement.Domain.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagementAPI.DTOs
 {
@@ -12,14 +14,13 @@ namespace LibraryManagementAPI.DTOs
 
         [Required]
         [StringLength(50)]
-        public string Author { get; set; }
+        public List<Author> Author { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Genre { get; set; }
+        public List<Genre> Genre { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime PublishedDate { get; set; }
     }
-
 }
