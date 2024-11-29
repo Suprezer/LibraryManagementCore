@@ -1,10 +1,8 @@
+using AspNetCoreRateLimit;
 using LibraryManagement.Application;
-using LibraryManagement.Application.Commands.CreateBook;
 using LibraryManagement.Domain.Interfaces;
 using LibraryManagement.Infrastructure;
-using LibraryManagement.Infrastructure.Data;
 using LibraryManagement.Infrastructure.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,16 +11,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register Dependency Injection services
+// Add rate limiting services
+builder.Services.AddMemoryCache();
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+builder.Services.AddInMemoryRateLimiting();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+
+// Register Dependency Injection containers
 builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration);
 
+// Register the UnitOfWork service
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
-
-Console.WriteLine("Testing");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseIpRateLimiting();
 
 app.UseAuthorization();
 
