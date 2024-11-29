@@ -25,4 +25,8 @@
     <ProjectReference Include="..\LibraryManagement.Application\LibraryManagement.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

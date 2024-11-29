@@ -9,16 +9,19 @@ namespace LibraryManagementAPI.DTOs
         public Guid Id { get; set; }
 
         [Required]
-        [StringLength(100)]
+        public string ISBN { get; set; }
+
+        [Required]
+        //[StringLength(100)]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public Author Author { get; set; }
+        //[StringLength(50)]
+        public string Author { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public Genre Genre { get; set; }
+        //[StringLength(50)]
+        public string Genre { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime PublishedDate { get; set; }

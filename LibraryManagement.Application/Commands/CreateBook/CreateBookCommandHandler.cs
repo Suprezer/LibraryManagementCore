@@ -22,6 +22,7 @@ namespace LibraryManagement.Application.Commands.CreateBook
         {
             var book = new Book
             {
+                ISBN = request.Body.ISBN,
                 Title = request.Body.Title,
                 Author = request.Body.Author,
                 Genre = request.Body.Genre,
