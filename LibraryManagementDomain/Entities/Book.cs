@@ -12,8 +12,8 @@ namespace LibraryManagement.Domain.Models
         public Guid Id { get; set; }
         public string ISBN { get; set; }
         public string Title { get; set; }
-        public List<Author> Author { get; set; }
-        public List<Genre> Genre { get; set; }
+        public Author Author { get; set; }
+        public Genre Genre { get; set; }
         public DateTime PublishedDate { get; set; }
     }
 }

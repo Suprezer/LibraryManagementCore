@@ -1,11 +1,5 @@
 ﻿using LibraryManagement.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Infrastructure.Data
 {
@@ -27,14 +21,6 @@ namespace LibraryManagement.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            /*
-            modelBuilder.Entity<Book>()
-                .HasMany(b => b.Author);
-
-            modelBuilder.Entity<Book>()
-                .HasMany(b => b.Genre);
-            */
         }
     }
 }

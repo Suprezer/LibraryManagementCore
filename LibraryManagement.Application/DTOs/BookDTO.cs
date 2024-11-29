@@ -14,11 +14,11 @@ namespace LibraryManagementAPI.DTOs
 
         [Required]
         [StringLength(50)]
-        public List<Author> Author { get; set; }
+        public Author Author { get; set; }
 
         [Required]
         [StringLength(50)]
-        public List<Genre> Genre { get; set; }
+        public Genre Genre { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime PublishedDate { get; set; }
