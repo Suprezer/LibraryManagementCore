@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="IServices\Services\" />
     <Folder Include="Queries\GetBookById\" />
     <Folder Include="Queries\GetAllBooks\" />
   </ItemGroup>

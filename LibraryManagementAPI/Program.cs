@@ -1,10 +1,10 @@
-using LibraryManagement.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using LibraryManagement.Domain.Interfaces;
-using LibraryManagement.Infrastructure.UnitOfWork;
+using LibraryManagement.Application;
 using LibraryManagement.Application.Commands.CreateBook;
+using LibraryManagement.Domain.Interfaces;
+using LibraryManagement.Infrastructure;
+using LibraryManagement.Infrastructure.Data;
+using LibraryManagement.Infrastructure.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +14,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Register Dependency Injection services
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructureServices(builder.Configuration);
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-// Add MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateBookCommand).Assembly));
-
-// Configure DbContext with migrations assembly
-builder.Services.AddDbContext<LibraryContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
