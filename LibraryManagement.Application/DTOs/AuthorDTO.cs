@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibraryManagement.Domain.Models
+﻿namespace LibraryManagement.Application.DTOs
 {
-    public class Author
+    public class AuthorDTO
     {
         public Guid Id { get; set; }
         public Guid BookId { get; set; }

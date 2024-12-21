@@ -36,7 +36,7 @@ namespace LibraryManagement.Infrastructure.Repositories
 
         public async Task<Book> GetByIdAsync(Guid id)
         {
-            return await _context.Books.FindAsync(id);
+            return await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task UpdateAsync(Book book)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Application.Commands.UpdateBook
 {
-    internal class UpdateBookCommandHandler
+    public class UpdateBookCommandHandler
     {
     }
 }

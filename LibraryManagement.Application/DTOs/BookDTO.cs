@@ -1,5 +1,4 @@
-﻿using LibraryManagement.Domain.Models;
-using LibraryManagement.Domain.Models.Enums;
+﻿using LibraryManagement.Application.DTOs;
 using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagementAPI.DTOs
@@ -17,7 +16,7 @@ namespace LibraryManagementAPI.DTOs
 
         [Required]
         //[StringLength(50)]
-        public string Author { get; set; }
+        public IEnumerable<AuthorDTO> Authors { get; set; }
 
         [Required]
         //[StringLength(50)]
