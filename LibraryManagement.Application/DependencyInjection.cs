@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using LibraryManagement.Application.Common.Mappings;
+using LibraryManagement.Domain.IRepository;
 
 namespace LibraryManagement.Application
 {

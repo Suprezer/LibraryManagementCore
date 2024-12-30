@@ -1,4 +1,6 @@
-﻿using LibraryManagement.Infrastructure.Data;
+﻿using LibraryManagement.Domain.IRepository;
+using LibraryManagement.Infrastructure.Data;
+using LibraryManagement.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,10 @@ namespace LibraryManagement.Infrastructure
                 }
                 options.UseSqlServer(connectionString);
             });
+
+            // Register third-party services here
+            services.AddScoped<IOpenLibraryBookService, OpenLibraryBookService>();
+
 
             return services;
         }
