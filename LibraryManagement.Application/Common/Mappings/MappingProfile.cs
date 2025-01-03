@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using LibraryManagement.Domain.Models;
+﻿using AutoMapper;
+using LibraryManagement.Application.DTOs;
+using LibraryManagement.Domain.Entities;
 using LibraryManagementAPI.DTOs;
+using LibraryManagement.Application.DTOs.OpenLibrary;
 
 namespace LibraryManagement.Application.Common.Mappings
 {
@@ -16,6 +13,25 @@ namespace LibraryManagement.Application.Common.Mappings
             // Book mappings
             CreateMap<Book, BookDTO>();
             CreateMap<BookDTO, Book>();
+
+            // Author mappings
+            CreateMap<Author, AuthorDTO>();
+            CreateMap<AuthorDTO, Author>();
+
+            // Genre mappings
+            CreateMap<Genre, GenreDTO>();
+            CreateMap<GenreDTO, Genre>();
+
+            // Publisher mappings
+            CreateMap<Publisher, PublisherDTO>();
+            CreateMap<PublisherDTO, Publisher>();
+
+            CreateMap<Edition, EditionDTO>();
+            CreateMap<EditionDTO, Edition>();
+
+            // OpenLibrary mappings
+            //CreateMap<OLBookResponseDTO, BookDTO>()
+            //    .ForMember
         }
     }
 }

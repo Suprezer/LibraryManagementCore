@@ -1,7 +1,9 @@
 using AspNetCoreRateLimit;
 using LibraryManagement.Application;
+using LibraryManagement.Application.IService;
 using LibraryManagement.Domain.Interfaces;
 using LibraryManagement.Infrastructure;
+using LibraryManagement.Infrastructure.Services;
 using LibraryManagement.Infrastructure.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,8 @@ builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>()
 builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddHttpClient<IOpenLibraryBookService, OpenLibraryBookService>();
 
 // Register the UnitOfWork service
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -1,5 +1,5 @@
 ﻿using LibraryManagement.Domain.Interfaces;
-using LibraryManagement.Domain.Models;
+using LibraryManagement.Domain.Entities;
 using LibraryManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,7 +36,8 @@ namespace LibraryManagement.Infrastructure.Repositories
 
         public async Task<Book> GetByIdAsync(Guid id)
         {
-            return await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
+            throw new NotImplementedException();
+            //return await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task UpdateAsync(Book book)

@@ -1,5 +1,5 @@
 ﻿using LibraryManagement.Domain.Interfaces;
-using LibraryManagement.Domain.Models;
+using LibraryManagement.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,8 @@
-﻿using LibraryManagement.Domain.IRepository;
+﻿using LibraryManagement.Application.DTOs.OpenLibrary;
+using LibraryManagement.Application.IService;
+using LibraryManagement.Domain.Entities;
 using LibraryManagementAPI.DTOs;
+using System.Text.Json;
 
 namespace LibraryManagement.Infrastructure.Services
 {
@@ -12,14 +15,32 @@ namespace LibraryManagement.Infrastructure.Services
             _httpClient = httpClient;
         }
 
-        public Task<BookDTO> GetBooksByAuthorAsync(string author)
+        public async Task<OLBookResponseDTO> GetBooksByTitleAsync(string title)
         {
-            throw new NotImplementedException();
+            title = title.Replace(" ", "+");
+
+            // It uses the following API for searching books by title: https://openlibrary.org/dev/docs/api/search
+            var response = await _httpClient.GetAsync($"https://openlibrary.org/search.json?title={title}");
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var searchResult = JsonSerializer.Deserialize<OLBookResponseDTO>(content);
+
+            return searchResult;
         }
 
-        public Task<BookDTO> GetBooksByTitleAsync(string title)
+        public async Task<OLBookResponseDTO> GetBooksByAuthorAsync(string author)
         {
-            throw new NotImplementedException();
+            author = author.Replace(" ", "+");
+
+            // It uses the following API for searching books by author: https://openlibrary.org/dev/docs/api/search
+            var response = await _httpClient.GetAsync($"https://openlibrary.org/search.json?author={author}");
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var searchResult = JsonSerializer.Deserialize<OLBookResponseDTO>(content);
+
+            return searchResult;
         }
     }
 }
