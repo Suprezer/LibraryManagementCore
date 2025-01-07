@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LibraryManagement.Application.DTOs;
 using LibraryManagement.Application.IService;
 using LibraryManagementAPI.DTOs;
 using MediatR;
@@ -24,11 +25,15 @@ namespace LibraryManagement.Application.Queries.GetOpenLibraryBooks.GetOLBooks
 
             if (!string.IsNullOrEmpty(SearchCriteria.Title))
             {
-                var book = await _openLibraryBookService.GetBooksByTitleAsync(SearchCriteria.Title);
+                var response = await _openLibraryBookService.GetBooksByTitleAsync(SearchCriteria.Title);
 
-                if (book != null)
+                if (response != null & response.docs != null)
                 {
-                    books.Add(_mapper.Map<BookDTO>(book));
+                    foreach (var doc in response.docs)
+                    {
+                        var bookDTO = _mapper.Map<BookDTO>(doc);
+                        books.Add(bookDTO);
+                    }
                 }
             }
             else if (!string.IsNullOrEmpty(SearchCriteria.Author))

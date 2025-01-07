@@ -1,7 +1,6 @@
 ﻿using LibraryManagement.Application.Queries.GetOpenLibraryBooks.GetOLBooks;
 using LibraryManagementAPI.DTOs;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.API.Controllers
@@ -16,8 +15,8 @@ namespace LibraryManagement.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<BookDTO>> GetBooks([FromQuery] GetOLBooksQuery query)
+        [HttpPost]
+        public async Task<IEnumerable<BookDTO>> GetBooks([FromBody] GetOLBooksQuery query)
         {
             return await _mediator.Send(query);
         }

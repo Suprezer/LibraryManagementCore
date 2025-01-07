@@ -34,6 +34,7 @@ namespace LibraryManagement.Infrastructure.Data
                 .IsRequired();
 
             // Configure the many-to-many relationship between Book and Genre
+            /*
             modelBuilder.Entity<Book>()
                 .HasMany(b => b.Genres)
                 .WithMany(g => g.Books)
@@ -41,6 +42,7 @@ namespace LibraryManagement.Infrastructure.Data
                     "BookGenre",
                     j => j.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
                     j => j.HasOne<Book>().WithMany().HasForeignKey("BookId"));
+            */
         }
     }
 }

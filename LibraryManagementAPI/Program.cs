@@ -24,7 +24,10 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddHttpClient<IOpenLibraryBookService, OpenLibraryBookService>();
+builder.Services.AddHttpClient<IOpenLibraryBookService, OpenLibraryBookService>(client =>
+{
+    client.DefaultRequestHeaders.Add("Contact-Email", "jmo@live.dk");
+});
 
 // Register the UnitOfWork service
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
