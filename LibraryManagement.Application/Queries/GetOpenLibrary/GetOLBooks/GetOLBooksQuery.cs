@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagement.Application.Queries.GetOpenLibraryBooks.GetOLBooks
+namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLBooks
 {
     public class GetOLBooksQuery : IRequest<ICollection<BookDTO>>
     {

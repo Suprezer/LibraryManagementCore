@@ -3,6 +3,9 @@ using LibraryManagement.Domain.Entities;
 
 namespace LibraryManagementAPI.DTOs
 {
+    /// <summary>
+    /// A Book in my domain is what's considered a Work in OpenLibrary's domain.
+    /// </summary>
     public class BookDTO
     {
         public Guid? Id { get; set; }
@@ -27,6 +30,9 @@ namespace LibraryManagementAPI.DTOs
         public int? RatingCount4 { get; set; }
         public int? RatingCount5 { get; set; }
         public double? RatingsAverage { get; set; }
+
+        public string OLId { get; set; }
+
         public BookDTO()
         {
             

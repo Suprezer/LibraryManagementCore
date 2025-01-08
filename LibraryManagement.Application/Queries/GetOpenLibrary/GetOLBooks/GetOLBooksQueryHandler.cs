@@ -4,7 +4,7 @@ using LibraryManagement.Application.IService;
 using LibraryManagementAPI.DTOs;
 using MediatR;
 
-namespace LibraryManagement.Application.Queries.GetOpenLibraryBooks.GetOLBooks
+namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLBooks
 {
     public class GetOLBooksQueryHandler : IRequestHandler<GetOLBooksQuery, ICollection<BookDTO>>
     {

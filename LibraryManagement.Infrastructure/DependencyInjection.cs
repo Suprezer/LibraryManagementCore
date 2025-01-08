@@ -26,6 +26,7 @@ namespace LibraryManagement.Infrastructure
 
             // Register third-party services here
             services.AddScoped<IOpenLibraryBookService, OpenLibraryBookService>();
+            services.AddScoped<IOpenLibraryEditionService, OpenLibraryEditionService>();
 
             return services;
         }

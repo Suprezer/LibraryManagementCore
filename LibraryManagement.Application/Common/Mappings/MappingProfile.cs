@@ -46,7 +46,21 @@ namespace LibraryManagement.Application.Common.Mappings
                 .ForMember(dest => dest.RatingCount3, opt => opt.MapFrom(src => src.ratings_count_3))
                 .ForMember(dest => dest.RatingCount4, opt => opt.MapFrom(src => src.ratings_count_4))
                 .ForMember(dest => dest.RatingCount5, opt => opt.MapFrom(src => src.ratings_count_5))
-                .ForMember(dest => dest.RatingsAverage, opt => opt.MapFrom(src => src.ratings_average));
+                .ForMember(dest => dest.RatingsAverage, opt => opt.MapFrom(src => src.ratings_average))
+                .ForMember(dest => dest.OLId, opt => opt.MapFrom(src => src.key));
+
+            CreateMap<Entry, EditionDTO>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.AuthorKey, opt => opt.MapFrom(src => src.authors.FirstOrDefault().key))
+                .ForMember(dest => dest.OLId, opt => opt.MapFrom(src => src.key))
+                .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.languages.FirstOrDefault().key))
+                .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.number_of_pages))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.title))
+                .ForMember(dest => dest.ISBN10, opt => opt.MapFrom(src => src.isbn_10.FirstOrDefault()))
+                .ForMember(dest => dest.ISBN13, opt => opt.MapFrom(src => src.isbn_13.FirstOrDefault()))
+                .ForMember(dest => dest.Publisher, opt => opt.MapFrom(src => src.publishers.FirstOrDefault()))
+                .ForMember(dest => dest.Desciption, opt => opt.MapFrom(src => src.description != null ? src.description.ToString() : null))
+                .ForMember(dest => dest.PublishDate, opt => opt.MapFrom(src => src.publish_date));
         }
     }
 }

@@ -24,7 +24,13 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration);
 
+// Register http clients for OpenLibrary services
 builder.Services.AddHttpClient<IOpenLibraryBookService, OpenLibraryBookService>(client =>
+{
+    client.DefaultRequestHeaders.Add("Contact-Email", "jmo@live.dk");
+});
+
+builder.Services.AddHttpClient<IOpenLibraryEditionService, OpenLibraryEditionService>(client =>
 {
     client.DefaultRequestHeaders.Add("Contact-Email", "jmo@live.dk");
 });

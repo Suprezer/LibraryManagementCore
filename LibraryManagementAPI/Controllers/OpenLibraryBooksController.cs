@@ -1,4 +1,4 @@
-﻿using LibraryManagement.Application.Queries.GetOpenLibraryBooks.GetOLBooks;
+﻿using LibraryManagement.Application.Queries.GetOpenLibrary.GetOLBooks;
 using LibraryManagementAPI.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
