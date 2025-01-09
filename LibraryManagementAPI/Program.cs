@@ -5,6 +5,7 @@ using LibraryManagement.Domain.Interfaces;
 using LibraryManagement.Infrastructure;
 using LibraryManagement.Infrastructure.Services;
 using LibraryManagement.Infrastructure.UnitOfWork;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,15 @@ builder.Services
     .AddInfrastructureServices(builder.Configuration);
 
 // Register http clients for OpenLibrary services
+builder.Services.AddHttpClient<IISBNDBBookService, ISBNDBBookService>(client =>
+{
+    client.BaseAddress = new Uri("https://api2.isbndb.com/");
+    client.DefaultRequestHeaders.Add("User-Agent", "insomnia/5.12.4"); // Popular HTTP client for testing APIs
+    client.DefaultRequestHeaders.Add("Authorization", builder.Configuration["ISBNDBAPIKey:APIKey"]);
+    client.DefaultRequestHeaders.Add("Accept", "*/*");
+});
+
+
 builder.Services.AddHttpClient<IOpenLibraryBookService, OpenLibraryBookService>(client =>
 {
     client.DefaultRequestHeaders.Add("Contact-Email", "jmo@live.dk");

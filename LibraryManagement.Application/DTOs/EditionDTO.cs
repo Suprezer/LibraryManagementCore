@@ -19,5 +19,6 @@ namespace LibraryManagement.Application.DTOs
         public string Publisher { get; set; }
         public string? Desciption { get; set; }
         public string? PublishDate { get; set; }
+        public string? BookId { get; set; }
     }
 }

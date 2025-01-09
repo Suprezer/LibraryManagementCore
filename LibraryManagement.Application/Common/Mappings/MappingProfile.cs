@@ -60,7 +60,12 @@ namespace LibraryManagement.Application.Common.Mappings
                 .ForMember(dest => dest.ISBN13, opt => opt.MapFrom(src => src.isbn_13.FirstOrDefault()))
                 .ForMember(dest => dest.Publisher, opt => opt.MapFrom(src => src.publishers.FirstOrDefault()))
                 .ForMember(dest => dest.Desciption, opt => opt.MapFrom(src => src.description != null ? src.description.ToString() : null))
-                .ForMember(dest => dest.PublishDate, opt => opt.MapFrom(src => src.publish_date));
+                .ForMember(dest => dest.PublishDate, opt => opt.MapFrom(src => src.publish_date))
+                .ForMember(dest => dest.BookId, opt => opt.MapFrom(src => src.works.FirstOrDefault().key));
+
+            CreateMap<OLEditionResponseDTO, EditionCollectionDTO>()
+                .ForMember(dest => dest.totalEditions, opt => opt.MapFrom(src => src.size))
+                .ForMember(dest => dest.Editions, opt => opt.MapFrom(src => src.entries));
         }
     }
 }

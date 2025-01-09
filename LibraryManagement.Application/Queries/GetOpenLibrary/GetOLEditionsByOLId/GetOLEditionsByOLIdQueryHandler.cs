@@ -6,7 +6,7 @@ using MediatR;
 
 namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLEditionsByOLId
 {
-    public class GetOLEditionsByOLIdQueryHandler : IRequestHandler<GetOLEditionsByOLIdQuery, ICollection<EditionDTO>>
+    public class GetOLEditionsByOLIdQueryHandler : IRequestHandler<GetOLEditionsByOLIdQuery, EditionCollectionDTO>
     {
         private readonly IMapper _mapper;
         private readonly IOpenLibraryEditionService _openLibraryEditionService;
@@ -17,25 +17,35 @@ namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLEditionsByOL
             _openLibraryEditionService = openLibraryEditionService;
         }
 
-        public async Task<ICollection<EditionDTO>> Handle(GetOLEditionsByOLIdQuery request, CancellationToken cancellationToken)
+        public async Task<EditionCollectionDTO> Handle(GetOLEditionsByOLIdQuery request, CancellationToken cancellationToken)
         {
-            List<EditionDTO> foundEditions = new List<EditionDTO>();
-
             if (request.searchCriteria.WorkOLId != null)
             {
                 var response = await _openLibraryEditionService.GetAllEditionsByOLIdAsync(request.searchCriteria);
 
-                if (response != null && response != null)
+                if (response != null)
                 {
-                    foreach (var edition in response.entries)
+                    var editionCollectionDTO = _mapper.Map<EditionCollectionDTO>(response);
+
+                    // Manually process the keys to remove unwanted parts
+                    foreach (var edition in editionCollectionDTO.Editions)
                     {
-                        var editionDTO = _mapper.Map<EditionDTO>(edition);
-                        foundEditions.Add(editionDTO);
+                        edition.OLId = RemoveKeyPrefix(edition.OLId);
+                        edition.AuthorKey = RemoveKeyPrefix(edition.AuthorKey);
+                        edition.Language = RemoveKeyPrefix(edition.Language);
+                        edition.BookId = RemoveKeyPrefix(edition.BookId);
                     }
+
+                    return editionCollectionDTO;
                 }
             }
 
-            return foundEditions;
+            return new EditionCollectionDTO { totalEditions = 0, Editions = new List<EditionDTO>() };
+        }
+
+        private string RemoveKeyPrefix(string key)
+        {
+            return key?.Split('/').Last();
         }
     }
 }

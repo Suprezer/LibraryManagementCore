@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLEditionsByOLId
 {
-    public class GetOLEditionsByOLIdQuery : IRequest<ICollection<EditionDTO>>
+    public class GetOLEditionsByOLIdQuery : IRequest<EditionCollectionDTO>
     {
         public EditionSearchCriteria searchCriteria { get; set; }
     }

@@ -22,7 +22,7 @@ namespace LibraryManagement.Infrastructure.Services
 
         public async Task<OLEditionResponseDTO> GetAllEditionsByOLIdAsync(EditionSearchCriteria searchCriteria)
         {
-            var response = await _httpClient.GetAsync($"https://openlibrary.org{searchCriteria.WorkOLId}/editions.json?offset={searchCriteria.OffSet}");
+            var response = await _httpClient.GetAsync($"https://openlibrary.org/works/{searchCriteria.WorkOLId}/editions.json?offset={searchCriteria.OffSet}");
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();

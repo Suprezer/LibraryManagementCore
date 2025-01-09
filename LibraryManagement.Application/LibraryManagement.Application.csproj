@@ -22,4 +22,8 @@
     <ProjectReference Include="..\LibraryManagementDomain\LibraryManagement.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\NewFolder\" />
+  </ItemGroup>
+
 </Project>

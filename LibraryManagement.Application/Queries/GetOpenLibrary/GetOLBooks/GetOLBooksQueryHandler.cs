@@ -19,34 +19,59 @@ namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLBooks
 
         public async Task<ICollection<BookDTO>> Handle(GetOLBooksQuery request, CancellationToken cancellationToken)
         {
-            var SearchCriteria = request.SearchCriteria;
+            var searchCriteria = request.SearchCriteria;
             // List of found books matching search criteria
             List<BookDTO> books = new List<BookDTO>();
 
-            if (!string.IsNullOrEmpty(SearchCriteria.Title))
+            if (!string.IsNullOrEmpty(searchCriteria.Title))
             {
-                var response = await _openLibraryBookService.GetBooksByTitleAsync(SearchCriteria.Title);
+                var response = await _openLibraryBookService.GetBooksByTitleAsync(searchCriteria.Title);
 
-                if (response != null & response.docs != null)
+                if (response != null && response.docs != null)
                 {
                     foreach (var doc in response.docs)
                     {
                         var bookDTO = _mapper.Map<BookDTO>(doc);
+                        bookDTO.OLId = RemoveKeyPrefix(bookDTO.OLId);
+                        if (bookDTO.Authors != null)
+                        {
+                            foreach (var author in bookDTO.Authors)
+                            {
+                                author.AuthorKey = RemoveKeyPrefix(author.AuthorKey);
+                            }
+                        }
                         books.Add(bookDTO);
                     }
                 }
             }
-            else if (!string.IsNullOrEmpty(SearchCriteria.Author))
+            else if (!string.IsNullOrEmpty(searchCriteria.Author))
             {
-                var book = await _openLibraryBookService.GetBooksByAuthorAsync(SearchCriteria.Author);
+                var response = await _openLibraryBookService.GetBooksByAuthorAsync(searchCriteria.Author);
 
-                if (book != null)
+                if (response != null && response.docs != null)
                 {
-                    books.Add(_mapper.Map<BookDTO>(book));
+                    foreach (var doc in response.docs)
+                    {
+                        var bookDTO = _mapper.Map<BookDTO>(doc);
+                        bookDTO.OLId = RemoveKeyPrefix(bookDTO.OLId);
+                        if (bookDTO.Authors != null)
+                        {
+                            foreach (var author in bookDTO.Authors)
+                            {
+                                author.AuthorKey = RemoveKeyPrefix(author.AuthorKey);
+                            }
+                        }
+                        books.Add(bookDTO);
+                    }
                 }
             }
 
             return books;
+        }
+
+        private string RemoveKeyPrefix(string key)
+        {
+            return key?.Split('/').Last();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Application.Queries.GetOpenLibrary.GetOLEditionsByOLId;
+﻿using LibraryManagement.Application.DTOs;
+using LibraryManagement.Application.Queries.GetOpenLibrary.GetOLEditionsByOLId;
 using LibraryManagementAPI.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -23,5 +24,15 @@ namespace LibraryManagement.API.Controllers
             var editions = await _mediator.Send(query);
             return Ok(editions);
         }
+
+        /*
+        [HttpPost("")]
+        public async Task<IActionResult> GetEditionsByAnotherCriteria([FromBody] )
+        {
+            //var editions = await _mediator.Send(query);
+            //return Ok(editions);
+        }*/
+
+
     }
 }
