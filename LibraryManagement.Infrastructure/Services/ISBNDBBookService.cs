@@ -81,7 +81,6 @@ namespace LibraryManagement.Infrastructure.Services
                 throw new HttpRequestException("Failed to retrieve books from ISBNDB");
             }
 
-
             return searchResult;
         }
     }

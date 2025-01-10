@@ -5,7 +5,7 @@ using LibraryManagement.Domain.Interfaces;
 using LibraryManagement.Infrastructure;
 using LibraryManagement.Infrastructure.Services;
 using LibraryManagement.Infrastructure.UnitOfWork;
-using System.Net;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,10 +63,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Enable rate limiting
 app.UseIpRateLimiting();
+
+// Enable Prometheus metrics
+app.UseHttpMetrics();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Map the Prometheus metrics endpoint
+app.MapMetrics();
 
 app.Run();
