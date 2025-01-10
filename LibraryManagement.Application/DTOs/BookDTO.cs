@@ -12,7 +12,7 @@ namespace LibraryManagementAPI.DTOs
         public string Title { get; set; }
         public string CoverImage { get; set; }
         public string TitleLong { get; set; }
-        public DateTime PublishedDate { get; set; }
+        public string PublishedDate { get; set; }
         public string Publisher { get; set; }
         public string Synopsis { get; set; }
         public ICollection<string> Subjects { get; set; }

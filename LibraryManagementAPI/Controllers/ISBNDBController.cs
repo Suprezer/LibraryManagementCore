@@ -18,7 +18,6 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpPost]
-        [Route("book")]
         public async Task<IActionResult> GetBooks([FromBody] BookSearchCriteria searchCriteria)
         {
             var query = new GetISBNDBBooksQuery { searchCriteria = searchCriteria };

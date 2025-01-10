@@ -1,7 +1,9 @@
-﻿using System;
+﻿using LibraryManagement.Application.Common.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LibraryManagement.Application.DTOs.ISBNDB
@@ -27,7 +29,10 @@ namespace LibraryManagement.Application.DTOs.ISBNDB
         public string isbn10 { get; set; }
         public string language { get; set; }
         public int pages { get; set; }
+
+        [JsonConverter(typeof(StringOrIntConverter))]
         public string edition { get; set; }
+
         public string dimensions { get; set; }
         public DimensionsStructured dimensions_structured { get; set; }
         public double? msrp { get; set; }

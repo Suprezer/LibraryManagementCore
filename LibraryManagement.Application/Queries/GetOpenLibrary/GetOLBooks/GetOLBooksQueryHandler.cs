@@ -19,54 +19,7 @@ namespace LibraryManagement.Application.Queries.GetOpenLibrary.GetOLBooks
 
         public async Task<ICollection<BookDTO>> Handle(GetOLBooksQuery request, CancellationToken cancellationToken)
         {
-            var searchCriteria = request.SearchCriteria;
-            // List of found books matching search criteria
-            List<BookDTO> books = new List<BookDTO>();
-
-            if (!string.IsNullOrEmpty(searchCriteria.Title))
-            {
-                var response = await _openLibraryBookService.GetBooksByTitleAsync(searchCriteria.Title);
-
-                if (response != null && response.docs != null)
-                {
-                    foreach (var doc in response.docs)
-                    {
-                        var bookDTO = _mapper.Map<BookDTO>(doc);
-                        bookDTO.OLId = RemoveKeyPrefix(bookDTO.OLId);
-                        if (bookDTO.Authors != null)
-                        {
-                            foreach (var author in bookDTO.Authors)
-                            {
-                                author.AuthorKey = RemoveKeyPrefix(author.AuthorKey);
-                            }
-                        }
-                        books.Add(bookDTO);
-                    }
-                }
-            }
-            else if (!string.IsNullOrEmpty(searchCriteria.Author))
-            {
-                var response = await _openLibraryBookService.GetBooksByAuthorAsync(searchCriteria.Author);
-
-                if (response != null && response.docs != null)
-                {
-                    foreach (var doc in response.docs)
-                    {
-                        var bookDTO = _mapper.Map<BookDTO>(doc);
-                        bookDTO.OLId = RemoveKeyPrefix(bookDTO.OLId);
-                        if (bookDTO.Authors != null)
-                        {
-                            foreach (var author in bookDTO.Authors)
-                            {
-                                author.AuthorKey = RemoveKeyPrefix(author.AuthorKey);
-                            }
-                        }
-                        books.Add(bookDTO);
-                    }
-                }
-            }
-
-            return books;
+            throw new NotImplementedException();
         }
 
         private string RemoveKeyPrefix(string key)

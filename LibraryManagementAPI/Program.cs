@@ -28,8 +28,8 @@ builder.Services
 // Register http clients for OpenLibrary services
 builder.Services.AddHttpClient<IISBNDBBookService, ISBNDBBookService>(client =>
 {
-    client.BaseAddress = new Uri("https://api2.isbndb.com/");
-    client.DefaultRequestHeaders.Add("User-Agent", "insomnia/5.12.4"); // Popular HTTP client for testing APIs
+    client.BaseAddress = new Uri("https://api2.isbndb.com");
+    client.DefaultRequestHeaders.Add("User-Agent", "insomnia/5.12.4"); // HTTP client for testing APIs
     client.DefaultRequestHeaders.Add("Authorization", builder.Configuration["ISBNDBAPIKey:APIKey"]);
     client.DefaultRequestHeaders.Add("Accept", "*/*");
 });

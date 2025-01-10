@@ -1,12 +1,9 @@
 ﻿using LibraryManagement.Application.DTOs.Filters.ISBNDB;
 using LibraryManagement.Application.DTOs.ISBNDB;
 using LibraryManagement.Application.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Infrastructure.Services
 {
@@ -21,14 +18,71 @@ namespace LibraryManagement.Infrastructure.Services
 
         public async Task<ISBNDBBookDTO> GetBooksAsync(BookSearchCriteria searchCriteria)
         {
-            // TODO: FIX
-            var response = await _httpClient.GetAsync($"book/{searchCriteria.query}");
+            var queryString = new StringBuilder();
+            queryString.Append($"/books/{Uri.EscapeDataString(searchCriteria.Query)}?");
+
+            if (searchCriteria.Page.HasValue)
+            {
+                queryString.Append($"page={searchCriteria.Page.Value}&");
+            }
+
+            if (searchCriteria.PageSize.HasValue)
+            {
+                queryString.Append($"pageSize={searchCriteria.PageSize.Value}&");
+            }
+
+            if (!string.IsNullOrEmpty(searchCriteria.Column))
+            {
+                queryString.Append($"column={searchCriteria.Column}&");
+            }
+
+            if (searchCriteria.YearOfPublication.HasValue)
+            {
+                queryString.Append($"year={searchCriteria.YearOfPublication.Value}&");
+            }
+
+            if (searchCriteria.Edition.HasValue)
+            {
+                queryString.Append($"edition={searchCriteria.Edition.Value}&");
+            }
+
+            if (!string.IsNullOrEmpty(searchCriteria.Language))
+            {
+                queryString.Append($"language={searchCriteria.Language}&");
+            }
+
+            // Removal of any trailing ampersands
+            if (queryString[queryString.Length - 1] == '&')
+            {
+                queryString.Length--;
+            }
+
+            // Currently left out
+            //queryString.Append($"&shouldMatchAll={searchCriteria.shouldMatchAll}");
+
+            var response = await _httpClient.GetAsync(queryString.ToString());
             response.EnsureSuccessStatusCode();
+            ISBNDBBookDTO searchResult;
 
-            var content = await response.Content.ReadAsStringAsync();
-            var books = JsonSerializer.Deserialize<ISBNDBBookDTO>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                searchResult = JsonSerializer.Deserialize<ISBNDBBookDTO>(content);
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                searchResult = new ISBNDBBookDTO();
+                searchResult.total = 0;
+                searchResult.books = new List<BookEntries>();
+            }
+            else
+            {
+                searchResult = null;
+                throw new HttpRequestException("Failed to retrieve books from ISBNDB");
+            }
 
-            return books;
+
+            return searchResult;
         }
     }
 }

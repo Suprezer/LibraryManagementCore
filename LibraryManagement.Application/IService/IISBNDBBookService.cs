@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Application.DTOs.Filters.ISBNDB;
 using LibraryManagement.Application.DTOs.ISBNDB;
+using LibraryManagementAPI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
