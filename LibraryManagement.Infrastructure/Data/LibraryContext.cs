@@ -11,8 +11,6 @@ namespace LibraryManagement.Infrastructure.Data
         public DbSet<Book> Books => Set<Book>();
         public DbSet<Author> Authors => Set<Author>();
         public DbSet<Publisher> Publishers => Set<Publisher>();
-        public DbSet<Genre> Genres => Set<Genre>();
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

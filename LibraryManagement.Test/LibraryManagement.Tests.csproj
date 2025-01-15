@@ -39,18 +39,57 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryManagement.Application\LibraryManagement.Application.csproj">
+      <Project>{5bfcf6ea-c26d-47fa-a9dc-115eca6c8db5}</Project>
+      <Name>LibraryManagement.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryManagement.Infrastructure\LibraryManagement.Infrastructure.csproj">
+      <Project>{4ca50bc5-f8ae-45a6-9abd-2c0f4a8727e1}</Project>
+      <Name>LibraryManagement.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryManagementAPI\LibraryManagement.API.csproj">
+      <Project>{a960be7e-6617-4da2-a7ca-f5db2b08768d}</Project>
+      <Name>LibraryManagement.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryManagementDomain\LibraryManagement.Domain.csproj">
+      <Project>{47e958bb-3062-4a26-a24f-3f757332aff7}</Project>
+      <Name>LibraryManagement.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integration Tests\" />
+    <Folder Include="Unit Tests\Application\" />
+    <Folder Include="Unit Tests\Domain\" />
+    <Folder Include="Unit Tests\Infrastructure\" />
+    <Folder Include="Unit Tests\Presentation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\MSTest.Analyzers.3.7.1\analyzers\dotnet\cs\MSTest.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\MSTest.Analyzers.3.7.1\analyzers\dotnet\cs\MSTest.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

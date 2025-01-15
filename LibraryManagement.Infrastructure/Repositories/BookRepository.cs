@@ -16,7 +16,6 @@ namespace LibraryManagement.Infrastructure.Repositories
         public async Task AddAsync(Book book)
         {
             await _context.Books.AddAsync(book);
-            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
@@ -25,7 +24,6 @@ namespace LibraryManagement.Infrastructure.Repositories
             if (book != null)
             {
                 _context.Books.Remove(book);
-                await _context.SaveChangesAsync();
             }
         }
 
