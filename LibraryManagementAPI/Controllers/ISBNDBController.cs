@@ -1,11 +1,13 @@
 ﻿using LibraryManagement.Application.DTOs.Filters.ISBNDB;
 using LibraryManagement.Application.Queries.ISBNDB.GetBooks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ISBNDBController : ControllerBase

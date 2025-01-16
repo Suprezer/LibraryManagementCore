@@ -31,22 +31,22 @@ namespace LibraryManagement.Infrastructure.Services
                 queryString.Append($"pageSize={searchCriteria.PageSize.Value}&");
             }
 
-            if (!string.IsNullOrEmpty(searchCriteria.Column))
+            if (!string.IsNullOrEmpty(searchCriteria.Column) && searchCriteria.Column != "string")
             {
                 queryString.Append($"column={searchCriteria.Column}&");
             }
 
-            if (searchCriteria.YearOfPublication.HasValue)
+            if (searchCriteria.YearOfPublication.HasValue && searchCriteria.YearOfPublication != 0)
             {
                 queryString.Append($"year={searchCriteria.YearOfPublication.Value}&");
             }
 
-            if (searchCriteria.Edition.HasValue)
+            if (searchCriteria.Edition.HasValue && searchCriteria.Edition != 0)
             {
                 queryString.Append($"edition={searchCriteria.Edition.Value}&");
             }
 
-            if (!string.IsNullOrEmpty(searchCriteria.Language))
+            if (!string.IsNullOrEmpty(searchCriteria.Language) && searchCriteria.Language != "string")
             {
                 queryString.Append($"language={searchCriteria.Language}&");
             }
@@ -61,7 +61,6 @@ namespace LibraryManagement.Infrastructure.Services
             //queryString.Append($"&shouldMatchAll={searchCriteria.shouldMatchAll}");
 
             var response = await _httpClient.GetAsync(queryString.ToString());
-            response.EnsureSuccessStatusCode();
             ISBNDBBookDTO searchResult;
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -71,13 +70,14 @@ namespace LibraryManagement.Infrastructure.Services
             }
             else if (response.StatusCode == HttpStatusCode.NotFound)
             {
-                searchResult = new ISBNDBBookDTO();
-                searchResult.total = 0;
-                searchResult.books = new List<BookEntries>();
+                searchResult = new ISBNDBBookDTO
+                {
+                    total = 0,
+                    books = new List<BookEntries>()
+                };
             }
             else
             {
-                searchResult = null;
                 throw new HttpRequestException("Failed to retrieve books from ISBNDB");
             }
 
