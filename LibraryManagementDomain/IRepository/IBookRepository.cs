@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Domain.Entities;
+using LibraryManagement.Domain.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace LibraryManagement.Domain.Interfaces
     public interface IBookRepository
     {
         Task<Book> GetByIdAsync(Guid id);
-        Task<IEnumerable<Book>> GetAllAsync();
+        Task<Book> GetByISBNAsync(string isbn);
+        Task<BookCollection> GetAllAsync(BookSearching criteria);
         Task AddAsync(Book book);
         Task UpdateAsync(Book book);
         Task DeleteAsync(Guid id);

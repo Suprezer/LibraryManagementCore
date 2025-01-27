@@ -11,7 +11,7 @@ namespace LibraryManagement.Application.Commands.CreateBook
     /// <summary>
     /// Command to create a new Book.
     /// </summary>
-    public class CreateBookCommand : IRequest<Guid>
+    public class CreateBookCommand : IRequest<Guid?>
     {
         public BookDTO Body { get; set; }
     }

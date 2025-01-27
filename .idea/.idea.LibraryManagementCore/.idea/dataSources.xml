@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Microsoft SQL Server (JetBrains)" uuid="5bc3199a-82f2-4c1e-a95c-8359b82c107f">
+      <driver-ref>sqlserver.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Data Source=hildur.ucn.dk;Initial Catalog=DMA-CSD-V23_10511081;Persist Security Info=True;User ID=DMA-CSD-V23_10511081;Password=Password1!;Encrypt=True;Trust Server Certificate=True</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

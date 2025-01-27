@@ -1,13 +1,16 @@
 ﻿using LibraryManagement.Application.Commands.CreateBook;
 using LibraryManagement.Application.Commands.DeleteBook;
 using LibraryManagement.Application.Commands.UpdateBook;
-using LibraryManagement.Application.Queries.GetAllBooks;
-using LibraryManagement.Application.Queries.GetBookById;
+using LibraryManagement.Application.DTOs.Filters.ISBNDB;
+using LibraryManagement.Application.Queries.Books.GetAllBooks;
+using LibraryManagement.Application.Queries.Books.GetBookById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
@@ -27,10 +30,10 @@ namespace LibraryManagement.API.Controllers
             return Ok(book);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetBooks()
+        [HttpPost("search")]
+        public async Task<IActionResult> GetBooks([FromBody] BookSearchCriteria criteria)
         {
-            var books = await _mediator.Send(new GetBooksQuery());
+            var books = await _mediator.Send(new GetBooksQuery { Criteria = criteria });
             return Ok(books);
         }
 

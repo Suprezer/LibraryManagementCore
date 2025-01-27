@@ -1,5 +1,4 @@
 ﻿using LibraryManagement.Domain.Entities;
-using LibraryManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Infrastructure.Data
@@ -11,10 +10,14 @@ namespace LibraryManagement.Infrastructure.Data
         public DbSet<Book> Books => Set<Book>();
         public DbSet<Author> Authors => Set<Author>();
         public DbSet<Publisher> Publishers => Set<Publisher>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderLine> OrderLines => Set<OrderLine>();
+        public DbSet<BorrowingEnt> Borrowings => Set<BorrowingEnt>();
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
             // Configure the many-to-many relationship between Book and Author
             modelBuilder.Entity<Book>()
                 .HasMany(b => b.Authors)
@@ -31,16 +34,19 @@ namespace LibraryManagement.Infrastructure.Data
                 .HasForeignKey(b => b.PublisherId)
                 .IsRequired();
 
-            // Configure the many-to-many relationship between Book and Genre
-            /*
-            modelBuilder.Entity<Book>()
-                .HasMany(b => b.Genres)
-                .WithMany(g => g.Books)
-                .UsingEntity<Dictionary<string, object>>(
-                    "BookGenre",
-                    j => j.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
-                    j => j.HasOne<Book>().WithMany().HasForeignKey("BookId"));
-            */
+            // Configure the one-to-many relationship between Order and OrderLine
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderLines)
+                .WithOne(ol => ol.Order)
+                .HasForeignKey(ol => ol.OrderId)
+                .IsRequired();
+
+            // Configure the one-to-many relationship between Book and OrderLine
+            modelBuilder.Entity<OrderLine>()
+                .HasOne(ol => ol.Book)
+                .WithMany()
+                .HasForeignKey(ol => ol.BookId)
+                .IsRequired();
         }
     }
 }

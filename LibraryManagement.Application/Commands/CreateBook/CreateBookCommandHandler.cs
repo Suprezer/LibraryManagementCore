@@ -10,7 +10,7 @@ using AutoMapper;
 
 namespace LibraryManagement.Application.Commands.CreateBook
 {
-    public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, Guid>
+    public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, Guid?>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace LibraryManagement.Application.Commands.CreateBook
             _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(CreateBookCommand request, CancellationToken cancellationToken)
+        public async Task<Guid?> Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
             var book = _mapper.Map<Book>(request.Body);
 
